@@ -1,0 +1,87 @@
+<div class="container">
+	<div class="new_order" ng-controller="customersController">
+		<div class="row">
+			<h1 sytle="text-align:center;">Products</h1>
+			<div class="col-sm-12">
+				<h3>Add a Product</h3>
+				<form class="form form-inline" id="productForm">
+					<div class="form-group">
+						<label>Customer</label>
+						<select class="form-control" ng-model="newOrder.customer">
+							<option ng-repeat="customer in customers track by $index">{{customer.FirstName}} {{customer.LastName}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Quantity</label>
+						<select class="form-control" ng-model="newOrder.quantity">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Product</label>
+						<select class="form-control" ng-model="newOrder.product">
+							<option ng-repeat="product in products">{{product.Name}} ${{product.Price}}</option>
+						</select>
+					</div>
+				<div class="form-group">
+				<input type="submit" class="btn btn-lg btn-primary pull-right" value="Add Order" ng-click="addOrder(newOrder)">
+				</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+					<h3>Products</h3>
+				<table class="table table-highlight">
+					<thead>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Location</th>
+						<th>Actions</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="product in products | filter:product_filter track by $index">
+							<td ng-bind="product.Name"></td>
+							<td ng-bind="product.Price"></td>
+							<td ng-bind="product.Location"></td>
+							<td><button class="btn btn-danger" ng-click="destroyProduct(product)">Delete</button></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<div class="orders" ng-controller="ordersController">
+			<h3>See Orders</h3>
+		<table class="table table-highlight">
+					<thead>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Product</th>
+						<th>Price</th>
+						<th>Qty Ordered</th>
+						<th>Actions</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="productinv in productsinv | filter:productinv_filter track by $index">
+							<td ng-bind="productinv.CustomerFirst"></td>
+							<td ng-bind="productinv.CustomerLast"></td>
+							<td ng-bind="productinv.Product"></td>
+							<td ng-bind="productinv.Price"></td>
+							<td ng-bind="productinv.Quantity"></td>
+							<td ng-bind="productinv.Date"></td>
+						<!-- 	<td><button class="btn btn-success" ng-click="buyProduct(productinv)">Buy</button></td> -->
+						</tr>
+					</tbody>
+				</table>
+</div>
